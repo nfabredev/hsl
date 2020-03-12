@@ -19,24 +19,24 @@ const ShowStops = () => {
     time: toReadableTime(n.realtimeArrival),
     bus: routes[i].route.shortName,
   }));
-  console.log(stopData);
 
-  const headers = Object.keys(stopData[0]).map(k => <th>{k}</th>);
-  const content = stopData.map(d => (
-    <tr>
-      <td>
-        {`${d.time.hours}h${d.time.minutes}
-         ${d.time.meridian}`}
-      </td>
-      <td>{d.bus}</td>
-    </tr>
-  ));
+  const headers = Object.keys(stopData[0]).map(key => <th>{key}</th>);
+  const content = stopData.map(
+    ({ time: { hours, minutes, meridian }, bus }) => (
+      <tr>
+        <td>{`${hours}h${minutes} ${meridian}`}</td>
+        <td>{bus}</td>
+      </tr>
+    )
+  );
 
   return (
     <>
       <table>
-        <tr>{headers}</tr>
-        {content}
+        <thead>
+          <tr>{headers}</tr>
+        </thead>
+        <tbody>{content}</tbody>
       </table>
     </>
   );
