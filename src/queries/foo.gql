@@ -1,0 +1,27 @@
+query getStops {
+  # Roihuvuoren kirkko
+  stop(id: "HSL:1432179") {
+    name
+    stoptimesWithoutPatterns {
+      scheduledArrival
+      realtimeArrival
+      arrivalDelay
+
+      scheduledDeparture
+      realtimeDeparture
+      departureDelay
+      realtime
+      realtimeState
+      serviceDay
+    }
+    patterns {
+      headsign
+      route {
+        gtfsId
+        shortName
+        longName
+        mode
+      }
+    }
+  }
+}
